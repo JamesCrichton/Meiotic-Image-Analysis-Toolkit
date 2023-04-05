@@ -1,7 +1,7 @@
 
 
 setBatchMode("False");
-
+run("Set Scale...", "distance=0 known=0 unit=pixel global");
 //Prepare the environment
 roiManager("reset");//clear ROIs from manager
 setOption("BlackBackground", true);//setting the background for binary images. 

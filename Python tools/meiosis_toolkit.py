@@ -10,10 +10,8 @@ import statistics
 import seaborn as sns
 sns.set_style("white")
 import scipy
-import TracePy as tp
-import imp
-imp.reload(tp)
 import re 
+from skimage import io
 from skimage.measure import regionprops
 from math import sqrt
 
@@ -372,7 +370,10 @@ def Axial_Shuffle(Mask,Label1,Label2,Intensity1,Intensity2,Label1_size_min,Label
     return  KDTreeShuffledLabel2toLabel1, original_cen_distances, original_weighted_cen_distances, Label1_Mask_Full, Label2_Mask_Full, New_Label2 # shuffled distances between foci in Label2 and Label1; size_selected foci from Label1, size selected foci from Label2, example of axially shuffed labelmap
  
 def Focus_Position_on_Trace(trace_path, label_data):
-    
+    import TracePy as tp
+    import imp
+    imp.reload(tp)
+ 
    
     df, meta = tp.read_trace(trace_path)
 
@@ -520,7 +521,10 @@ def Resolved_homologues_focus_position(Trace_df, Foci_Labelmap, Foci_Intensity_I
     return Foci_data
 
 def Axis_Proximity(trace_path): 
-       
+    import TracePy as tp
+    import imp
+    imp.reload(tp)
+        
     df, meta = tp.read_trace(trace_path)
     
     # Swap x and y axis in trace data (and xd/yd too to avoid confusion) as these dimensions switch from ImageJ
