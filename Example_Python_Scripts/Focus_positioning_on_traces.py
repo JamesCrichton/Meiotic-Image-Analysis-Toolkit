@@ -25,31 +25,32 @@ Created on Fri May 19 10:24:28 2023
 # Note: on Windows systems use two backslashes or a forward slash as a file separator when setting paths e.g. "C:\Users\me\Path to folder"
 
 import os
-import sys
-#Automatically setting paths to repositories downloaded to the desktop
+
+#Automatically setting paths to repositories downloaded to the desktop, and image directories. 
 desktop = os.path.expanduser("~/Desktop")
-Meio_toolkit_path=os.path.join(desktop,"Meiotic-Image-Analysis-main")
+Meio_toolkit_path=os.path.join(desktop,"Meiotic-Image-Analysis-Toolkit-main")
 TracePy_path= os.path.join(desktop,"TracePy-master")
-img_library=os.path.join(Meio_toolkit,Segmentation sample image)
+img_library=os.path.join(Meio_toolkit_path,"Widefield_sample_data")
 
 Foci_data="Watershed_Foci_measurements_to_Axes_Mask.csv"
 
 
-# #Alternatively these paths can be set manually:
+# #Alternatively paths to repositories and image directories can be set manually. This is required if for example a OneDrive Desktop is being used:
 # TracePy_path= "C:/Users/jcc234/OneDrive - University of Exeter/Desktop/TracePy-master"
 # Meio_toolkit_path="C:/Users/jcc234/OneDrive - University of Exeter/Desktop/Meiotic-Image-Analysis-Toolkit-main"
-img_library="C:\\Users\\iadams23\\Desktop\\Code for GitHub\\Segmentation sample image\\renamed"
-Foci_data="Watershed_Foci_measurements_to_Axes_Mask.csv"
+# img_library="C:/Users/jcc234/OneDrive - University of Exeter/Meiotic-Image-Analysis-Toolkit-main/Widefield_sample_data"
+# Foci_data="Watershed_Foci_measurements_to_Axes_Mask.csv"
 
 # Run position measurement script:
 # This will output results as "Watershed_Foci_measurements_to_Axes_Mask_and_positioning" files and modify the "Axis_Trace_Measurements.csv" files in the image metadata subfolders.
 
 ## Add package addresses to the environment
+import sys
 sys.path.append(TracePy_path)
 sys.path.append(Meio_toolkit_path)
 
 ## Import packages
-import Focus_position_on_axes_1D 
+import meiosis_toolkit
 import fnmatch
 
 ## Identify image data and process
@@ -68,12 +69,14 @@ for Folder in Folders:
             trace_path=Folder_Path+file
         if fnmatch.fnmatch(file,Foci_data):
             foci_data_found=1
-            foci_path=Folder_Path+"\\"+Foci_data
+            foci_path=os.path.join(Folder_Path+Foci_data)
         if (foci_data_found & trace_found):
-            trace_df, Focus_Info=Focus_position_on_axes_1D.Focus_Position_on_Trace(trace_path, foci_path)
+            trace_df, Focus_Info=meiosis_toolkit.Focus_Position_on_Trace(trace_path, foci_path)
                                   
             trace_df["Image"]=Folder#Add the codename to entries in this file. Will help later if concatenating 
-            trace_df.to_csv(Folder_Path+"/Axis_Trace_Measurements.csv")
+            trace_data_path=os.path.join(Folder_Path+"Axis_Trace_Measurements.csv")
+            trace_df.to_csv(trace_data_path)
             name=Foci_data.replace(".csv","")
-            Focus_Info.to_csv(Folder_Path+"\\"+name+"_and_positioning.csv")
+            focus_info_path=os.path.join(Folder_Path, (name+"_and_positioning.csv"))
+            Focus_Info.to_csv(focus_info_path)
  
