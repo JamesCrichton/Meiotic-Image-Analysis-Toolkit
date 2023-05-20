@@ -25,6 +25,10 @@ Created on Fri May 19 10:24:28 2023
 import os
 import sys
 
+##############################################################################################
+############### PATHS TO BE MANUALLY EDITED ##################################################
+##############################################################################################
+
 #Automatically setting paths to repositories downloaded to the desktop, and image directories. 
 desktop = os.path.expanduser("~/Desktop")
 Meio_toolkit_path=os.path.join(desktop,"Meiotic-Image-Analysis-Toolkit-main")
@@ -33,12 +37,18 @@ img_library=os.path.join(Meio_toolkit_path,"Widefield_sample_data")
 
 Foci_data="Watershed_Foci_measurements_to_Axes_Mask.csv"
 
+
 # #Alternatively paths to repositories and image directories can be set manually. This is required if for example a OneDrive Desktop is being used
 # #Note: on Windows systems use two backslashes or a forward slash as a file separator when setting paths e.g. "C:\Users\me\Path to folder"
 
 # TracePy_path= "C:/Users/jcc234/OneDrive - University of Exeter/Desktop/TracePy-master"
 # Meio_toolkit_path="C:/Users/jcc234/OneDrive - University of Exeter/Desktop/Meiotic-Image-Analysis-Toolkit-main"
 # img_library="C:/Users/jcc234/OneDrive - University of Exeter/Meiotic-Image-Analysis-Toolkit-main/Widefield_sample_data"
+
+##############################################################################################
+##############################################################################################
+##############################################################################################
+
 
 #check if these automatic paths are valid
 if not os.path.exists(Meio_toolkit_path):
@@ -54,8 +64,11 @@ if not os.path.exists(img_library):
 # This will output results as "Watershed_Foci_measurements_to_Axes_Mask_and_positioning" files and modify the "Axis_Trace_Measurements.csv" files in the image metadata subfolders.
 
 ## Add package addresses to the environment
-sys.path.append(TracePy_path)
-sys.path.append(Meio_toolkit_path)
+if not TracePy_path in sys.path:
+    sys.path.append(TracePy_path)
+
+if not Meio_toolkit_path in sys.path:
+    sys.path.append(Meio_toolkit_path)
 
 ## Import packages
 import meiosis_toolkit
