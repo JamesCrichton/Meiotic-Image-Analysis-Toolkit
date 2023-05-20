@@ -39,7 +39,6 @@ Foci_data="Watershed_Foci_measurements_to_Axes_Mask.csv"
 # TracePy_path= "C:/Users/jcc234/OneDrive - University of Exeter/Desktop/TracePy-master"
 # Meio_toolkit_path="C:/Users/jcc234/OneDrive - University of Exeter/Desktop/Meiotic-Image-Analysis-Toolkit-main"
 # img_library="C:/Users/jcc234/OneDrive - University of Exeter/Meiotic-Image-Analysis-Toolkit-main/Widefield_sample_data"
-# Foci_data="Watershed_Foci_measurements_to_Axes_Mask.csv"
 
 #check if these automatic paths are valid
 if not os.path.exists(Meio_toolkit_path):
