@@ -34,8 +34,7 @@ Meio_toolkit_path=os.path.join(desktop,"Meiotic-Image-Analysis-Toolkit-main")
 img_library=os.path.join(Meio_toolkit_path,"SIM_sample_data")
 
 # #Alternatively paths to repositories and image directories can be set manually. This is required if for example a OneDrive Desktop is being used
-# #Note: on Windows systems use two backslashes or a forward slash as a file separator when setting paths e.g. "C:\Users\me\Path to folder"
-
+# #Note: on Windows systems use two backslashes or a forward slash as a file separator when setting paths e.g.
 # Meio_toolkit_path="C:/Users/jcc234/OneDrive - University of Exeter/Desktop/Meiotic-Image-Analysis-Toolkit-main"
 # img_library="C:/Users/jcc234/OneDrive - University of Exeter/Meiotic-Image-Analysis-Toolkit-main/SIM_sample_data"
 
