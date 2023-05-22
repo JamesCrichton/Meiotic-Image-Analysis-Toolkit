@@ -77,7 +77,7 @@ if (Image_not_previously_scored){
 	
 	run("Brightness/Contrast...");run("Channels Tool...");
 	
-	Dialog.createNonBlocking("Image Detials");
+	Dialog.createNonBlocking("Image Details");
 	MeioticStage=newArray("Leptotene", "Zygotene","Pachytene","Diplotene","Metaphase I","Asynapsed Pachytene","Other");
 	Dialog.addRadioButtonGroup("Meiotic Stage", MeioticStage, 2,3,"");
 	Dialog.addCheckbox("Separate XY Scoring", false);
