@@ -62,7 +62,7 @@ for (i = 0; i < files.length; i++) {
     if (files[i]==potential_metadata_path){
     	Image_not_previously_scored=0;
 		open(dir2+"/Image_Summary.csv");	
-		XY_value=getResultString("XY Analysis", 0);
+		XY_value=getResultString("Autosome Analysis", 0);
 		XY=(XY_value=="Yes");//convert string to bool
 		Manual_Stage = getResultString("Stage", 0);
 		roiManager("Open",dir2+"/RoiSet.zip");	
@@ -158,7 +158,7 @@ if (reusing_axis_mask==0){
 			roiManager("Select", Axis_roi);roiManager("Rename", Axes_output_name);run("Select None");
 		}}
 
-	//If XY analysis has been selected then separate data needs to be generated for an axis mask lasking the sex chromosomes
+	//If Autosome Analysis has been selected then separate data needs to be generated for an axis mask lasking the sex chromosomes
 	//Removing XY manually using eraser if requested at start 
 	if (XY) {
 		selectWindow("Axes");run("Duplicate...","title=Axes_Copy");run("8-bit");
@@ -560,7 +560,7 @@ if (Image_not_previously_scored){
 		}
 		
 	if (XY)	{
-		setResult("XY Analysis",0,"Yes");
+		setResult("Autosome Analysis",0,"Yes");
 		setResult("Autosomal_"+Axes_output_name+"_Euclidean_Skeleton_Length",0,autosome_skel_len);
 		if(!no_foci){
 			setResult(Foci_output_name+"_Foci_on_autosomal_"+Axes_output_name,0,foci_on_autosomes);
@@ -570,7 +570,7 @@ if (Image_not_previously_scored){
 		}
 	}
 	else {
-		setResult("XY Analysis",0,"No");
+		setResult("Autosome Analysis",0,"No");
 	}
 	updateResults();
 }
