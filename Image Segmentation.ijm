@@ -194,7 +194,7 @@ while (ROI_Index<0){
 	if (ROI_Index>=0){
 		ROI_Choice=newArray("Yes, continue", "No, choose different ROI");
 		Dialog.create("Check ROI Mask Selection");	
-		Dialog.addRadioButtonGroup("Mask selected is called \""+ Axes_output_name+"\". Is this correct?", ROI_Choice, 2, 1, "No, choose different ROI");
+		Dialog.addRadioButtonGroup("Mask selected is called \""+ Axes_output_name+"\". Is this correct?\nNote, this title will be used in output files.", ROI_Choice, 2, 1, "No, choose different ROI");
 		Dialog.show;
 
 		ROI_Happy=Dialog.getRadioButton();
@@ -469,7 +469,7 @@ if (reusing_foci_labelmap==0){
 			if (ROI_Index>=0){
 				ROI_Choice=newArray("Yes, continue", "No, choose different ROI");
 				Dialog.create("Check ROI Mask Selection");	
-				Dialog.addRadioButtonGroup("Mask selected is called \""+ Axes_output_name+"\". Is this correct?", ROI_Choice, 2, 1, "No, choose different ROI");
+				Dialog.addRadioButtonGroup("Mask selected is called \""+ Axes_output_name+"\". Is this correct?\nNote, this title will be used in output files.", ROI_Choice, 2, 1, "No, choose different ROI");
 				Dialog.show;
 		
 				ROI_Happy=Dialog.getRadioButton();
