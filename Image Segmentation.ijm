@@ -180,12 +180,35 @@ if (reusing_axis_mask==0){
 		}}
 	
 else {//if reusing existing roi for axes then define whih one. Create dialogue with one opetion if only autosomal, two if XY are to be removed
-	waitForUser("Select Axial Roi in Manager");
+	roiManager("Deselect");//deselect any existing ROIs, so a new one must be selected to continue
+	ROI_Index=roiManager("index");
+
+while (ROI_Index<0){
+	selectWindow("ROI Manager");
+	waitForUser("Select Axial Roi in ROI Manager");
+	ROI_Index=roiManager("index");
+		
 	Axes_output_name=Roi.getName;
 	Axis_roi=roiManager("index");
+
+	if (ROI_Index>=0){
+		ROI_Choice=newArray("Yes, continue", "No, choose different ROI");
+		Dialog.create("Check ROI Mask Selection");	
+		Dialog.addRadioButtonGroup("Mask selected is called \""+ Axes_output_name+"\". Is this correct?", ROI_Choice, 2, 1, "No, choose different ROI");
+		Dialog.show;
+
+		ROI_Happy=Dialog.getRadioButton();
+		
+		if (ROI_Happy == "No, choose different ROI"){
+			ROI_Index=-1; //reset index so loop will repeat
+		}
+	}
+	}
+
 	//Make mask for axis using the roi
 	newImage(Axes_output_name, "8-bit black", width, height, 1);
 	roiManager("Select", Axis_roi);roiManager("Fill");run("Select None");
+	
 	if (XY){//Repeat for autosome mask. Default to using the next Roi i manager after the one selected, since this is how they're recorded
 		Autosome_roi=Axis_roi+1;
 		Autosome_output_name="Autosome_"+Axes_output_name;
@@ -431,10 +454,33 @@ if (reusing_foci_labelmap==0){
 		}}
 
 	else {//if reusing existing roi for foci then define whih one. 
-		waitForUser("Select Focal Roi in Manager");
-		//		setBatchMode("hide");//enter batch mode
-		Foci_output_name=Roi.getName;
-		Foci_roi=roiManager("index");run("Select None");
+		
+		roiManager("Deselect");//deselect any existing ROIs, so a new one must be selected to continue
+		ROI_Index=roiManager("index");
+
+		while (ROI_Index<0){
+			selectWindow("ROI Manager");
+			waitForUser("Select Focal Roi in ROI Manager");
+			ROI_Index=roiManager("index");
+				
+			Foci_output_name=Roi.getName;
+			Foci_roi=roiManager("index");
+		
+			if (ROI_Index>=0){
+				ROI_Choice=newArray("Yes, continue", "No, choose different ROI");
+				Dialog.create("Check ROI Mask Selection");	
+				Dialog.addRadioButtonGroup("Mask selected is called \""+ Axes_output_name+"\". Is this correct?", ROI_Choice, 2, 1, "No, choose different ROI");
+				Dialog.show;
+		
+				ROI_Happy=Dialog.getRadioButton();
+				
+				if (ROI_Happy == "No, choose different ROI"){
+					ROI_Index=-1; //reset index so loop will repeat
+				}
+			}
+			}
+		
+		
 		//Make mask for foci using the roi
 		newImage("Foci_Mask", "8-bit black", width, height, 1);
 		roiManager("Select", Foci_roi);roiManager("Fill");run("Select None");
