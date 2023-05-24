@@ -1,2 +1,2 @@
-Stage,Image_Comments,Axes_Mask_Skeleton_Quality,Axes_Mask_Skeleton_Comments,Axes_Mask_Euclidean_Total_Skeleton_Length,Foci_on_Axes_Mask,Foci_off_Axes_Mask,XY Analysis,Autosomal_Axes_Mask_Euclidean_Skeleton_Length,Foci_on_autosomal_Axes_Mask
-Pachytene,,Good for axis measurement,,873.100,160,7,Yes,717.190,148
+Stage,Image_Comments,Axes_Mask_Skeleton_Quality,Axes_Mask_Skeleton_Comments,Axes_Mask_Euclidean_Total_Skeleton_Length,Foci_on_Axes_Mask,Foci_off_Axes_Mask,Autosome Analysis,Autosomal_Axes_Mask_Euclidean_Skeleton_Length,Foci_on_autosomal_Axes_Mask
+Pachytene,,Good for axis measurement,,873.1,160,7,Yes,717.19,148
