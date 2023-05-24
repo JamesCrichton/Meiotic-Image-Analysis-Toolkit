@@ -32,9 +32,9 @@ for (i = 1; i <= nSlices; i++) {
   slice_range_axes=Array.concat(slice_range,"Pre-existing mask");
   slice_range_foci=Array.concat(slice_range,"Pre-existing labelmap");
   
-Dialog.addChoice("Axis channel number:", slice_range_axes);
+Dialog.addChoice("Axes channel number:", slice_range_axes);
 //Dialog.addString("Pre-segmented mask filename", "Axes_Mask");
-Dialog.addString("Axis analysis title", "Axes_Mask");
+Dialog.addString("Axes analysis title", "Axes_Mask");
 Dialog.addChoice("Foci channel number:", slice_range_foci);
 //Dialog.addString("Pre-segmented mask filename", "Watershed_Foci");
 Dialog.addString("Foci analysis title", "Watershed_Foci");
