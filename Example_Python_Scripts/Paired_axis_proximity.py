@@ -78,12 +78,19 @@ for Folder in Folders:
     foci_data_found=0
 
     #Only proceed if .traces file present for an image in its metadata folder
-    for file in os.listdir(Folder_Path):
-        if fnmatch.fnmatch(file,'*.traces'):
-            trace_found=1
-            trace_path=os.path.join(Folder_Path,file)
-            trace_df=meiosis_toolkit.Axis_Proximity(trace_path)
-                                  
-            trace_df["Image"]=Folder#Add the codename to entries in this file. Will help later if concatenating 
-            trace_df_path=os.path.join(Folder_Path,"Axis_Trace_Measurements.csv")
-            trace_df.to_csv(trace_df_path)       
+    Traces_found=any('*.traces' in file for file in os.listdir(Folder_Path))
+    if Traces_found:
+        for file in os.listdir(Folder_Path):
+            if fnmatch.fnmatch(file,'*.traces'):
+                trace_found=1
+                trace_path=os.path.join(Folder_Path,file)
+                trace_df=meiosis_toolkit.Axis_Proximity(trace_path)
+                                      
+                trace_df["Image"]=Folder#Add the codename to entries in this file. Will help later if concatenating 
+                trace_df_path=os.path.join(Folder_Path,"Axis_Trace_Measurements.csv")
+                trace_df.to_csv(trace_df_path)       
+    else:
+        print("ERROR! No .traces file found for "+file+". Is the data in the correct location? Require a collection of metadata folders named in the format \"imagename_Output\" and containing .traces files, within the location you defined:" +img_library)
+            
+if len(Folders)==0:
+    print("ERROR! NO FOLDERS DETECTED. Is the data in the correct location? Require a collection of metadata folders named in the format \"imagename_Output\" and containing .traces files, within the location you defined:" +img_library)
