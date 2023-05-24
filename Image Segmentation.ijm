@@ -139,7 +139,7 @@ if (reusing_axis_mask==0){
 
 		Dialog.createNonBlocking("Thresholding Filtered Image");
 		Dialog.addMessage("Adjust threshold limits, making axis territory red. \nDo not \"Apply\", but select \"Proceed\" and click \"OK\" if you're happy with the result.\nAlternatively select \"Reset\" to restart the filtering process.");
-		filter_options = newArray("Reset", "Proceed");
+		filter_options = newArray("Reset Gaussian filter", "Accept and Continue");
 		Dialog.addRadioButtonGroup("", filter_options, 2, 1, "Reset");
 		Dialog.show;
 		
