@@ -268,8 +268,8 @@ if (reusing_axis_mask==0){//only skeletonize if this hasn't been done before
 	//Assess skeleton quality
 	selectWindow("Accepted_Skeleton");
 	Dialog.createNonBlocking("Skeleton Assessment");
-	details=newArray("Good for axis measurement", "Poor - exclude");
-	Dialog.addRadioButtonGroup("Skeleton Quality", details, 1, 2, "Good for axis measurement");
+	details=newArray("Good", "Poor");
+	Dialog.addRadioButtonGroup("Skeleton Quality", details, 1, 2, "Good");
 	Dialog.addString("Additional Comments","");
 	Dialog.show;
 	
