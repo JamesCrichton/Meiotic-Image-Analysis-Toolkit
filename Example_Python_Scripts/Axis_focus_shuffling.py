@@ -138,4 +138,9 @@ for Folder in Folders:
 
         print(Folder+" processed ("+ str(duration) +" seconds).")
         
+    else:
+        print("ERROR! Files not detected. Is the data in the correct location? Require a collection of metadata folders named in the format \"imagename_Output\" within the location you defined:" +img_library)
+        
+if len(Folders)==0:
+    print("ERROR! NO FOLDERS DETECTED. Is the data in the correct location? Require a collection of metadata folders named in the format \"imagename_Output\" within the location you defined:" +img_library)
 
