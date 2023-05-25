@@ -103,3 +103,9 @@ for Folder in Folders:
 
         print(Folder+" processed")
 
+    else:
+        print("ERROR! Suitable files not detected in "+Folder+". Is the data in the correct location? Require a collection of metadata folders named in the format \"imagename_Output\" within the location you defined:" +img_library)
+        
+if len(Folders)==0:
+    print("ERROR! NO FOLDERS DETECTED. Is the data in the correct location? Require a collection of metadata folders named in the format \"imagename_Output\" within the location you defined:" +img_library)
+
