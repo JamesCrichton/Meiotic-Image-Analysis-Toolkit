@@ -100,3 +100,8 @@ for Folder in Folders:
             focus_info_path=os.path.join(Folder_Path, (name+"_and_positioning.csv"))
             Focus_Info.to_csv(focus_info_path)
  
+    else:
+        print("ERROR! No .traces or focus labelmap file found in "+file+". Is the data in the correct location? Require a collection of metadata folders named in the format \"imagename_Output\" and containing .traces and watershed label map files you've named "+Foci_data+", within the location you defined:" +img_library)
+            
+if len(Folders)==0:
+    print("ERROR! NO FOLDERS DETECTED. Is the data in the correct location? Require a collection of metadata folders named in the format \"imagename_Output\" and containing .traces and watershed label map files you've named "+Foci_data+", within the location you defined:" +img_library)
