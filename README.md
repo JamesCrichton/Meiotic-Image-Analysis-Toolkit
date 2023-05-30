@@ -15,11 +15,10 @@ ImageJ script guides users through the segmentation of axial and focal staining 
 
 ## Running Python scripts
 
-Python functions created are packaged into a single file "meiosis_toolkit.py". Example scripts employing the these to analyse batches of images are
-- fewghre
+Python functions created are packaged into a single file "meiosis_toolkit.py". 
 
 Several scripts also require [TracePy](https://github.com/huangziwei/TracePy/tree/master), which should also be downloaded. 
 
-The scripts reqire that the location of the downloaded repositories ("TracePy" and "Meiosis_Image_Analysis_Toolkit") are specified, so they can be installed and sample images accessed. Code is written with the **Desktop** being the default location to which these repositories are saved. 
+Example scripts employing the these to analyse batches of images are in the "Example_Python_Scripts" folder. These are setup to use the exmaple image data included in this repository. These scripts reqire that the location of the downloaded repositories ("TracePy" and "Meiosis_Image_Analysis_Toolkit") are specified, so they can be installed and sample images accessed. Code is written with the **Desktop** being the default location to which these repositories are saved. 
 
-To run on your own image data, paths to image directories must be changed appropriately. 
+To run on your own image data or store the repositories elsewhere, paths to image directories must be changed appropriately. 
