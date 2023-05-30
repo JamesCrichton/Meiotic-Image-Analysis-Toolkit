@@ -19,6 +19,14 @@ Python functions created are packaged into a single file "meiosis_toolkit.py".
 
 Several scripts also require [TracePy](https://github.com/huangziwei/TracePy/tree/master), which should also be downloaded. 
 
-Example scripts employing the these to analyse batches of images are in the "Example_Python_Scripts" folder. These are setup to use the exmaple image data included in this repository. These scripts reqire that the location of the downloaded repositories ("TracePy" and "Meiosis_Image_Analysis_Toolkit") are specified, so they can be installed and sample images accessed. Code is written with the **Desktop** being the default location to which these repositories are saved. 
+Example scripts employing the these to analyse batches of images are in the "Example_Python_Scripts" folder. These are setup to use the example image data included in this repository. These scripts reqire that the location of the downloaded repositories ("TracePy" and "Meiosis_Image_Analysis_Toolkit") are specified, so they can be installed and sample images accessed. Code is written with the **Desktop** being the default location to which these repositories are saved. 
 
 To run on your own image data or store the repositories elsewhere, paths to image directories must be changed appropriately. 
+
+Example scripts enable users to:
+- Calculate segmented focus position along traced axes ("Focus_positioning_on_traces.py")
+- Shuffle foci randomly in nuclear space and calculate distances to another marker e.g. axes ("Nuclear_focus_shuffling.py")
+- Shuffle foci randomly in axial space and calculate distances to another merger e.g. another axial focus ("Axis_focus_shuffling.py")
+- Calculate the proximity of pairs of axis traces ("Paired_axis_proximity.py")
+- Calculate the distance of segmented foci from axes and orientation between/outside of pairs of axes ("Focus_position_relative_to_individually_traced_axis_pairs.py")
+
