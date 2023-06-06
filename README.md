@@ -1,4 +1,4 @@
-# Meiosis_Image_Analysis_Toolkit
+# Meiosis Image Analysis Toolkit
 A collection of scripts for the analysis of meiotic prophase I fluorescence images. 
 
 Download the contents of this repository by clicking Code > Download ZIP and extracting, or by cloning using git. 
