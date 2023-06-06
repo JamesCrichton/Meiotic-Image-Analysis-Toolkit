@@ -26,7 +26,7 @@ To run on your own image data or store the repositories elsewhere, paths to imag
 Example scripts enable users to:
 - Calculate segmented focus position along traced axes ("Focus_positioning_on_traces.py")
 - Shuffle foci randomly in nuclear space and calculate distances to another marker e.g. axes ("Nuclear_focus_shuffling.py")
-- Shuffle foci randomly in axial space and calculate distances to another merger e.g. another axial focus ("Axis_focus_shuffling.py")
+- Shuffle foci randomly in axial space and calculate distances to another marker e.g. another axial focus ("Axis_focus_shuffling.py")
 - Calculate the proximity of pairs of axis traces ("Paired_axis_proximity.py")
 - Calculate the distance of segmented foci from axes and orientation between/outside of pairs of axes ("Focus_position_relative_to_individually_traced_axis_pairs.py")
 
