@@ -87,7 +87,6 @@ if (Image_not_previously_scored){
 	Manual_Stage=Dialog.getRadioButton();
 	Comments=Dialog.getString();
 	XY=Dialog.getCheckbox();
-	close("Channels");
 }
 
 //2. Select ROIs
@@ -135,7 +134,7 @@ if (reusing_axis_mask==0){
 		run("Duplicate...", "title=["+filtered_img_name+"]");
 		run("Gaussian Blur...", "sigma="+sigma);
 
-		run("Threshold...");call("ij.plugin.frame.ThresholdAdjuster.setMode", "Red");
+		run("Threshold...");setAutoThreshold("Otsu dark no-reset");call("ij.plugin.frame.ThresholdAdjuster.setMode", "Red");
 
 		Dialog.createNonBlocking("Thresholding Filtered Image");
 		Dialog.addMessage("Adjust threshold limits, making axis territory red. \nDo not \"Apply\", but select \"Accept and continue\" and click \"OK\" if you're happy with the result.\nAlternatively select \"Reset Gaussian filter\" to restart the filtering process.");
@@ -320,7 +319,7 @@ if (reusing_foci_labelmap==0){
 		run("Brightness/Contrast...");waitForUser("Adjust Foci Brightness/Contrast", "When ready, click \"OK\". Do not click \"Apply\""); //Need to press OK to continue
 		selectWindow("B&C");run("Close");
 		//Threshold
-		run("Threshold...");call("ij.plugin.frame.ThresholdAdjuster.setMode", "Red");
+		run("Threshold...");setAutoThreshold("Otsu dark no-reset");call("ij.plugin.frame.ThresholdAdjuster.setMode", "Red");
 		waitForUser("Adjust threshold limits, making foci territory red. \nDo not \"Apply\", but click \"OK\" when complete"); //Need to press OK to continue
 		
 		run("Convert to Mask");
