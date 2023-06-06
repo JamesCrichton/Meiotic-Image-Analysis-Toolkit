@@ -122,7 +122,7 @@ if (reusing_axis_mask==0){
 	decision="";
 	filtered_img_name="filtered_img_name";
 	//Select level of Gaussian filtering for axis segmentation
-	while (decision!="Proceed"){
+	while (decision!="Accept and continue"){
 		Dialog.createNonBlocking("Gaussian Filter");
 		Dialog.addMessage("Set a Gaussian filter to reduce noise in image.This can aid axis segmentation.\nClick \"OK\" to try thresholding. Adjustment is permitted later if necessary");
 		Dialog.addString("Radius (sigma)", sigma);
@@ -138,18 +138,18 @@ if (reusing_axis_mask==0){
 		run("Threshold...");call("ij.plugin.frame.ThresholdAdjuster.setMode", "Red");
 
 		Dialog.createNonBlocking("Thresholding Filtered Image");
-		Dialog.addMessage("Adjust threshold limits, making axis territory red. \nDo not \"Apply\", but select \"Proceed\" and click \"OK\" if you're happy with the result.\nAlternatively select \"Reset\" to restart the filtering process.");
-		filter_options = newArray("Reset Gaussian filter", "Accept and Continue");
+		Dialog.addMessage("Adjust threshold limits, making axis territory red. \nDo not \"Apply\", but select \"Accept and continue\" and click \"OK\" if you're happy with the result.\nAlternatively select \"Reset Gaussian filter\" to restart the filtering process.");
+		filter_options = newArray("Reset Gaussian filter", "Accept and continue");
 		Dialog.addRadioButtonGroup("", filter_options, 2, 1, "Reset");
 		Dialog.show;
 		
 		decision=Dialog.getRadioButton();		
 					
-		if (decision=="Reset"){
+		if (decision=="Reset Gaussian filter"){
 			close(filtered_img_name);
 			close("Threshold");
 			}
-		if(decision=="Proceed"){
+		if(decision=="Accept and Continue"){
 			run("Convert to Mask");close("Threshold");
 			close(Axes_output_name);//close the axial intensity image
 			selectWindow(filtered_img_name);rename(Axes_output_name);//Assign the mask this name as it's used later
