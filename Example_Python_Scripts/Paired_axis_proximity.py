@@ -84,7 +84,7 @@ for Folder in Folders:
     foci_data_found=0
 
     #Only proceed if .traces file present for an image in its metadata folder
-    Traces_found=any('traces' in file for file in os.listdir(Folder_Path))
+    Traces_found=any('.traces' in file for file in os.listdir(Folder_Path))
             
     if Traces_found:
         for file in os.listdir(Folder_Path):
@@ -95,9 +95,10 @@ for Folder in Folders:
                                       
                 trace_df["Image"]=Folder#Add the codename to entries in this file. Will help later if concatenating 
                 trace_df_path=os.path.join(Folder_Path,"Axis_Trace_Measurements.csv")
-                trace_df.to_csv(trace_df_path)       
-        else:
-            print("ERROR! No .traces file found for "+file+". Is the data in the correct location? Require a collection of metadata folders named in the format \"imagename_Output\" and containing .traces files, within the location you defined:" +img_library)
+                trace_df.to_csv(trace_df_path)   
+                print(Folder+" processed")
+    else:
+        print("ERROR! No .traces file found for "+Folder+". Is the data in the correct location? Require a collection of metadata folders named in the format \"imagename_Output\" and containing .traces files, within the location you defined:" +img_library)
                 
 if len(Folders)==0:
     print("ERROR! NO FOLDERS DETECTED. Is the data in the correct location? Require a collection of metadata folders named in the format \"imagename_Output\" and containing .traces files, within the location you defined:" +img_library)
