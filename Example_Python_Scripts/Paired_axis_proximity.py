@@ -51,6 +51,13 @@ if not os.path.exists(TracePy_path):
 if not os.path.exists(img_library):
     sys.exit("Error! img_library path not valid. Define manually")
 
+#Install required modules
+requirements_path = os.path.join(Meio_toolkit_path,"requirements.txt")
+current_wd=os.getcwd()
+os.chdir(Meio_toolkit_path)# Navigate to the directorty to access the requirements file. Not working well with longer paths
+!pip install -r requirements.txt
+os.chdir(current_wd)
+
 
 # Run paired axis proximity quantification
 # This will output results as "Axis_Trace_Measurements.csv" files in the image metadata subfolders.
