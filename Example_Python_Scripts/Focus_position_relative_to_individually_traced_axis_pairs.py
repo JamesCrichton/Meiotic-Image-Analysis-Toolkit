@@ -62,6 +62,12 @@ if not os.path.exists(img_library):
 # Run position measurement script:
 # The focus positions will be saved in the image metadata subfolder with the suffix "homologous_axis_measurements.csv"
 
+#Install required modules
+current_wd=os.getcwd()
+os.chdir(Meio_toolkit_path)# Navigate to the directorty to access the requirements file. Not working well with longer paths
+!pip install -r requirements.txt 
+os.chdir(current_wd)
+ 
 ## Add package addresses to the environment
 
 sys.path.append(Meio_toolkit_path)
