@@ -69,6 +69,12 @@ shuffles=10
 ##############################################################################################
 ##############################################################################################
 
+#Install required modules
+current_wd=os.getcwd()
+os.chdir(Meio_toolkit_path)# Navigate to the directorty to access the requirements file. Not working well with longer paths
+!pip install -r requirements.txt 
+os.chdir(current_wd)
+ 
 
 # Run axial foci shuffling:
 # This script will output multiple .csv and .tif files to the image metadata subfolders
