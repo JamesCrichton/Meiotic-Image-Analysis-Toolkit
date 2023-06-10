@@ -59,6 +59,12 @@ if not os.path.exists(TracePy_path):
 if not os.path.exists(img_library):
     sys.exit("Error! img_library path not valid. Define manually")
     
+#Install required modules
+current_wd=os.getcwd()
+os.chdir(Meio_toolkit_path)# Navigate to the directorty to access the requirements file. Not working well with longer paths
+!pip install -r requirements.txt 
+os.chdir(current_wd)
+    
 # Run position measurement script:
 # This will output results as "Watershed_Foci_measurements_to_Axes_Mask_and_positioning" files and modify the "Axis_Trace_Measurements.csv" files in the image metadata subfolders.
 
@@ -77,31 +83,32 @@ import fnmatch
 Folders=next(os.walk(img_library))[1]
 
 for Folder in Folders:
-    Folder_Path=img_library+"/"+Folder+"/"
+    Folder_Path=os.path.join(img_library,Folder)
     trace_found=0
     foci_data_found=0
 
     #Find the .traces file and foci measurement data for an image in its metadata folder
     #Only proceed if both are found 
-    for file in os.listdir(Folder_Path):
-        if fnmatch.fnmatch(file,'*.traces'):
-            trace_found=1
-            trace_path=Folder_Path+file
-        if fnmatch.fnmatch(file,Foci_data):
-            foci_data_found=1
-            foci_path=os.path.join(Folder_Path+Foci_data)
-        if (foci_data_found & trace_found):
-            trace_df, Focus_Info=meiosis_toolkit.Focus_Position_on_Trace(trace_path, foci_path)
-                                  
-            trace_df["Image"]=Folder#Add the codename to entries in this file. Will help later if concatenating 
-            trace_data_path=os.path.join(Folder_Path+"Axis_Trace_Measurements.csv")
-            trace_df.to_csv(trace_data_path)
-            name=Foci_data.replace(".csv","")
-            focus_info_path=os.path.join(Folder_Path, (name+"_and_positioning.csv"))
-            Focus_Info.to_csv(focus_info_path)
+    trace_found=[file for file in os.listdir(Folder_Path) if ".traces" in file][0]
+    foci_found=[file for file in os.listdir(Folder_Path) if Foci_data == file][0]
+    
+    if ((trace_found != 0) & (foci_found != 0)):
+        
+        trace_path=os.path.join(Folder_Path,trace_found)
+        foci_path=os.path.join(Folder_Path,foci_found)
+
+        trace_df, Focus_Info=meiosis_toolkit.Focus_Position_on_Trace(trace_path, foci_path)
+                              
+        trace_df["Image"]=Folder#Add the codename to entries in this file. Will help later if concatenating 
+        trace_data_path=os.path.join(Folder_Path,"Axis_Trace_Measurements.csv")
+        trace_df.to_csv(trace_data_path)
+        name=Foci_data.replace(".csv","")
+        focus_info_path=os.path.join(Folder_Path, (name+"_and_positioning.csv"))
+        Focus_Info.to_csv(focus_info_path)
+        print(Folder_Path+" Processed")
  
     else:
-        print("ERROR! No .traces or focus labelmap file found in "+file+". Is the data in the correct location? Require a collection of metadata folders named in the format \"imagename_Output\" and containing .traces and watershed label map files you've named "+Foci_data+", within the location you defined:" +img_library)
+        print("ERROR! No .traces or focus labelmap file found in "+Folder_Path+". Is the data in the correct location? Require a collection of metadata folders named in the format \"imagename_Output\" and containing .traces and watershed label map files you've named "+Foci_data+", within the location you defined:" +img_library)
             
 if len(Folders)==0:
     print("ERROR! NO FOLDERS DETECTED. Is the data in the correct location? Require a collection of metadata folders named in the format \"imagename_Output\" and containing .traces and watershed label map files you've named "+Foci_data+", within the location you defined:" +img_library)
