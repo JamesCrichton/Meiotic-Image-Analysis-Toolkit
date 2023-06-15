@@ -1,4 +1,7 @@
+//James Crichton
+//Macro for segmenting axial and focal fluorescence staining patterns from 2D meiotic prophase I cells. 
 
+//First open a stack image to analyse before running. Written to analyse tiffs
 
 setBatchMode("False");
 run("Set Scale...", "distance=0 known=0 unit=pixel global");
@@ -57,15 +60,15 @@ run("Select None");run("Duplicate...", "title=Original duplicate");
 //Does a metadata folder already exist? If so open the Image_Summary.csv and RoiSet.zip
 files=getFileList(dir1);
 Image_not_previously_scored=1;//1 == True
-potential_metadata_path=title+"_Output/";
+potential_metadata_path=title+"_Output"+File.separator;
 for (i = 0; i < files.length; i++) {
     if (files[i]==potential_metadata_path){
     	Image_not_previously_scored=0;
-		open(dir2+"/Image_Summary.csv");	
+		open(dir2+File.separator+"Image_Summary.csv");	
 		XY_value=getResultString("Autosome Analysis", 0);
 		XY=(XY_value=="Yes");//convert string to bool
 		Manual_Stage = getResultString("Stage", 0);
-		roiManager("Open",dir2+"/RoiSet.zip");	
+		roiManager("Open",dir2+File.separator+"RoiSet.zip");	
 		print("Existing image data detected");
     }}
 
@@ -101,7 +104,7 @@ if (Image_not_previously_scored){
 	run("Colors...", "foreground=white background=black selection=darkgray");
 
 	newImage("Nuclear_Mask", "8-bit black", width, height, 1);//make nuclear mask image
-	roiManager("Select", 0);roiManager("Fill");run("Select None");saveAs("tiff", dir2 + "/Nuclear_Mask");
+	roiManager("Select", 0);roiManager("Fill");run("Select None");saveAs("tiff", dir2 +File.separator+ "Nuclear_Mask");
 	close("Nuclear_Mask");
 	}
 
@@ -486,7 +489,7 @@ if (reusing_foci_labelmap==0){
 		newImage("Foci_Maxima", "8-bit black", width, height, 1);
 		Foci_Maxima_roi=Foci_roi+1;
 		roiManager("Select", Foci_Maxima_roi);roiManager("Fill");run("Select None");
-		roiManager("Save", dir2 + "/RoiSet.zip");roiManager("reset");//save ROIs and close manager
+		roiManager("Save", dir2 +File.separator+ "RoiSet.zip");roiManager("reset");//save ROIs and close manager
 		run("Threshold to label map (2D, 3D)", "threshold=1");rename("Foci_Maxima_Labelmap");//Convert to labelmap so maxima can act as seed points for watershedding
 		run("Watershed with seed points (2D, 3D)", "image_to_segment=Foci_Mask image_with_seed_points=Foci_Maxima_Labelmap use_threshold threshold=1");
 		rename("Watershed_labelmap_foci");
@@ -687,24 +690,24 @@ if (Image_not_previously_scored){
 //4. Save data 
 
 //save data and masks/labelmaps and rois
-selectWindow("Results");saveAs("Results",dir2 + "/Image_Summary.csv");close("Image_Summary.csv");close("Results");
+selectWindow("Results");saveAs("Results",dir2 +File.separator+ "Image_Summary.csv");close("Image_Summary.csv");close("Results");
 
 if(!no_foci){
-	selectWindow("Focus_measurements");saveAs("Results",dir2 + "/"+Foci_output_name+"_measurements_to_"+Axes_output_name+".csv");close(Foci_output_name+"_measurements_to_"+Axes_output_name+".csv");
+	selectWindow("Focus_measurements");saveAs("Results",dir2 + File.separator+Foci_output_name+"_measurements_to_"+Axes_output_name+".csv");close(Foci_output_name+"_measurements_to_"+Axes_output_name+".csv");
 }
 //save images, labelmaps and ROIs
 if (reusing_axis_mask==0){
-	selectWindow(Axes_output_name);saveAs("tiff", dir2 + "/"+Axes_output_name);
+	selectWindow(Axes_output_name);saveAs("tiff", dir2 + File.separator+Axes_output_name);
 	if(XY){
-	selectWindow(Autosome_output_name);saveAs("tiff", dir2 + "/"+Autosome_output_name);
+	selectWindow(Autosome_output_name);saveAs("tiff", dir2 +File.separator+Autosome_output_name);
 	}}
 if(reusing_foci_labelmap==0){
 	if(!no_foci){
-	selectWindow(Foci_output_name);saveAs("tiff", dir2 + "/"+Foci_output_name);
+	selectWindow(Foci_output_name);saveAs("tiff", dir2 +File.separator+Foci_output_name);
 	}}
 
 
-roiManager("Save", dir2 + "/"+Foci_output_name+"_ROIs.zip");//save ROIs
+roiManager("Save", dir2 +File.separator+Foci_output_name+"_ROIs.zip");//save ROIs
 
 close("*");close("B&C");close("Channels");//close all images and tools
 close("ROI Manager");
