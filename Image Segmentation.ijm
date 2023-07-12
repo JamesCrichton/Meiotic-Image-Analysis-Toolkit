@@ -83,7 +83,7 @@ if (Image_not_previously_scored){
 	Dialog.createNonBlocking("Image Details");
 	MeioticStage=newArray("Leptotene", "Zygotene","Pachytene","Diplotene","Metaphase I","Asynapsed Pachytene","Other");
 	Dialog.addRadioButtonGroup("Meiotic Stage", MeioticStage, 2,3,"");
-	Dialog.addCheckbox("Separate XY Scoring", false);
+	Dialog.addCheckbox("Separate Autosome Scoring", false);
 	Dialog.addString("Additional Comments","");
 	Dialog.show;
 		
