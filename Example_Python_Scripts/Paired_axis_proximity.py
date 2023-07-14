@@ -35,7 +35,7 @@ img_library=os.path.join(Meio_toolkit_path,"SIM_sample_data")
 # #Note: on Windows systems use two backslashes or a forward slash as a file separator when setting paths e.g.
 # TracePy_path= "C:/Users/jcc234/OneDrive - University of Exeter/Desktop/TracePy-master"
 # Meio_toolkit_path="C:/Users/jcc234/OneDrive - University of Exeter/Desktop/Meiotic-Image-Analysis-Toolkit-main"
-# img_library="C:/Users/jcc234/OneDrive - University of Exeter/Meiotic-Image-Analysis-Toolkit-main/SIM_sample_data"
+# img_library="C:/Users/jcc234/OneDrive - University of Exeter/Desktop/Meiotic-Image-Analysis-Toolkit-main/SIM_sample_data"
 
 ##############################################################################################
 ##############################################################################################
