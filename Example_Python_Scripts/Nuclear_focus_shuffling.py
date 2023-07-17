@@ -9,7 +9,7 @@ Created on Sat May 20 16:46:53 2023
 # To determine whether foci are genuinely associated with the chromosome axes it can be informative to artificially shuffle segmented foci around the nuclear space and compare the observed and randomly-distributed levels of axial colocalisation/proximity.
 
 # Data:
-# Images must have been segmented using the "Image Segmentation" ImageJ macro to generate nuclear masks ("Nuclear_Mask.tif"), axial masks ("Axial_Mask.tif") and foci labelmaps ("Watershed_Foci.tif").
+# Images must have been segmented using the "Image Segmentation" ImageJ macro to generate nuclear masks ("Nuclear_Mask.tif"), axial masks ("Axial_Mask.tif") and foci labelmaps ("Watershed_Foci.tif"). These default file names can be altered below, if others have been used.
 
 # Specify package and data locations:
 # Set the Meio_toolkit_path path below to the folder where you saved the meiosis_toolkit package.

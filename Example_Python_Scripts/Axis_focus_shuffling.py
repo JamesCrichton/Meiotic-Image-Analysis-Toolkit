@@ -9,7 +9,7 @@ Created on Sat May 20 15:54:06 2023
 # To determine whether different types of foci are genuinely associated with one another it can be informative to artificially shuffle segmented foci around the axial space and compare the observed and randomly-distributed levels of colocalisation/proximity.
 
 # Data:
-# Images must have been segmented using the "Image Segmentation" ImageJ macro to generate nuclear masks ("Nuclear_Mask.tif"), axial masks ("Axial_Mask.tif") and foci labelmaps (.tif files). Axial shuffling requires two focus labelmaps, one (Label_1) remains static and the other (Label_2) is shuffled around the axis mask. Distances from each shuffled Label_2 focus to the closest reference Label 1 focus are measured.
+# Images must have been segmented using the "Image Segmentation" ImageJ macro to generate nuclear masks ("Nuclear_Mask.tif"), axial masks ("Axial_Mask.tif") and foci labelmaps (.tif files). These default file names can be altered below, if others have been used. Axial shuffling requires two focus labelmaps, one (Label_1) remains static and the other (Label_2) is shuffled around the axis mask. Distances from each shuffled Label_2 focus to the closest reference Label 1 focus are measured.
 
 # Specify package and data locations:
 # Set the Meio_toolkit_path path below to the folder where you saved the meiosis_toolkit package.
