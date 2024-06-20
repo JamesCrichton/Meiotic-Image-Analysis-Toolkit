@@ -9,7 +9,7 @@ ImageJ script guides users through the segmentation of axial and focal staining 
 
 - Running this macro first requires the installation of [Fiji](https://fiji.sc/). 
 - Open Fiji and drag and drop the downloaded macro file into the Fiji toolbar to open. The code will appear in the script editor.
-- Open your image of interest (this should be a stack image). 
+- Open your image of interest (this should be a 2D stack image). An example image can be found in the "Widefield_sample_data" folder, called "Example_Pachytene_DAPI_RPA_SYCP3.tif"
 - Click "Run" to start the macro.
 
 
